@@ -1,0 +1,6 @@
+To enable the contact form:
+1. Go to https://web3forms.com
+2. Create a free access key.
+3. Replace YOUR_WEB3FORMS_ACCESS_KEY in your HTML.
+4. Upload your website.
+Messages will be delivered to your configured email.
