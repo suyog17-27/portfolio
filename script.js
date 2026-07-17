@@ -150,3 +150,55 @@ topBtn.onclick = () => {
     });
 
 };
+
+/* ===========================
+   CERTIFICATE MODAL
+=========================== */
+
+const certificateLinks = document.querySelectorAll('.certificate-link');
+const certificateModal = document.getElementById('certificateModal');
+const certificateModalFrame = document.getElementById('certificateModalFrame');
+const certificateClose = document.querySelector('.certificate-close');
+
+function closeCertificateModal() {
+    if (certificateModal) {
+        certificateModal.classList.remove('show');
+        certificateModal.setAttribute('aria-hidden', 'true');
+    }
+    if (certificateModalFrame) {
+        certificateModalFrame.src = '';
+    }
+    document.body.style.overflow = '';
+}
+
+certificateLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const fileSrc = link.getAttribute('data-file');
+
+        if (fileSrc && certificateModalFrame) {
+            certificateModalFrame.src = fileSrc;
+            certificateModal.classList.add('show');
+            certificateModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+});
+
+if (certificateClose) {
+    certificateClose.addEventListener('click', closeCertificateModal);
+}
+
+if (certificateModal) {
+    certificateModal.addEventListener('click', (e) => {
+        if (e.target === certificateModal) {
+            closeCertificateModal();
+        }
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeCertificateModal();
+    }
+});
